@@ -1,0 +1,39 @@
+###
+POST http://localhost:3000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "ALbert Einstein",
+  "age": 80,
+  "email": "nikolatesla@email.com",
+  "password": "contraseña1"
+}
+
+###
+GET http://localhost:3000/api/users HTTP/1.1
+
+###
+GET http://localhost:3000/api/users/6137e2bb2e329eb206b0073e HTTP/1.1
+
+###
+DELETE http://localhost:3000/api/users/63d30e86692249e229702aeb HTTP/1.1
+
+###
+PUT http://localhost:3000/api/users/6137e2412e329eb206b0073c HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "John Conway",
+  "age": 80,
+  "email": "johnconway@email.com"
+}
+
+###
+POST http://localhost:3000/api/contents HTTP/1.1
+Content-Type: application/json
+
+{
+  "concept": "prueba conceptoissidjskldjlksds",
+  "characteristic": "caracteristica 2dssdusiojidiosd",
+  "examples": "prueba ejemplo asklalsjksakllksadsa2"
+}

@@ -1,57 +1,53 @@
 const express = require("express");
-const contentSchema = require("../models/content");
+const videoSchema = require("../models/video");
+
+// Rutas para colección "videos"
 
 const router = express.Router();
 
 // create user
-router.post("/contents", (req, res) => {
-  const content = contentSchema(req.body);
-  content
+router.post("/videos", (req, res) => {
+  const video = videoSchema(req.body);
+  video
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get all users
-router.get("/contents", (req, res) => {
-  contentSchema
+router.get("/videos", (req, res) => {
+    videoSchema
     .find()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get a user
-router.get("/contents/:id", (req, res) => {
+router.get("/videos/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  videoSchema
     .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // delete a user
-router.delete("/contents/:id", (req, res) => {
+router.delete("/videos/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  videoSchema
     .remove({ _id: id })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // update a user
-router.put("/contents/:id", (req, res) => {
+router.put("/videos/:id", (req, res) => {
   const { id } = req.params;
-  const { concept, characteristic, examples } = req.body;
-  contentSchema
-    .updateOne({ _id: id }, { $set: { concept, characteristic, examples } })
+  const { format, audio_quality, url } = req.body;
+  videoSchema
+    .updateOne({ _id: id }, { $set: { format, audio_quality, url } })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 module.exports = router;
-
-//CRUD (crear, leer, actualizar, borrar)
-//create 
-//Read
-//Update
-//Delete

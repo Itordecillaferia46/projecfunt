@@ -1,57 +1,51 @@
 const express = require("express");
-const contentSchema = require("../models/content");
+const draganddropSchema = require("../models/draganddrop");
 
 const router = express.Router();
 
 // create user
-router.post("/contents", (req, res) => {
-  const content = contentSchema(req.body);
-  content
+router.post("/draganddrops", (req, res) => {
+  const draganddrop = draganddropSchema(req.body);
+  draganddrop
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get all users
-router.get("/contents", (req, res) => {
-  contentSchema
+router.get("/draganddrops", (req, res) => {
+    draganddropSchema
     .find()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get a user
-router.get("/contents/:id", (req, res) => {
+router.get("/draganddrops/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  draganddropSchema
     .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // delete a user
-router.delete("/contents/:id", (req, res) => {
+router.delete("/draganddrops/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  draganddropSchema
     .remove({ _id: id })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // update a user
-router.put("/contents/:id", (req, res) => {
+router.put("/draganddrops/:id", (req, res) => {
   const { id } = req.params;
-  const { concept, characteristic, examples } = req.body;
-  contentSchema
-    .updateOne({ _id: id }, { $set: { concept, characteristic, examples } })
+  const {respuestas} = req.body;
+  draganddropSchema
+    .updateOne({ _id: id }, { $set: {  respuestas } })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 module.exports = router;
-
-//CRUD (crear, leer, actualizar, borrar)
-//create 
-//Read
-//Update
-//Delete

@@ -1,57 +1,51 @@
 const express = require("express");
-const contentSchema = require("../models/content");
+const creditoSchema = require("../models/credito");
 
 const router = express.Router();
 
 // create user
-router.post("/contents", (req, res) => {
-  const content = contentSchema(req.body);
-  content
+router.post("/creditos", (req, res) => {
+  const credito = creditoSchema(req.body);
+  credito
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get all users
-router.get("/contents", (req, res) => {
-  contentSchema
+router.get("/creditos", (req, res) => {
+    creditoSchema
     .find()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get a user
-router.get("/contents/:id", (req, res) => {
+router.get("/creditos/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  creditoSchema
     .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // delete a user
-router.delete("/contents/:id", (req, res) => {
+router.delete("/creditos/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  creditoSchema
     .remove({ _id: id })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // update a user
-router.put("/contents/:id", (req, res) => {
+router.put("/creditos/:id", (req, res) => {
   const { id } = req.params;
-  const { concept, characteristic, examples } = req.body;
-  contentSchema
-    .updateOne({ _id: id }, { $set: { concept, characteristic, examples } })
+  const { nombre } = req.body;
+  creditoSchema
+    .updateOne({ _id: id }, { $set: { nombre } })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 module.exports = router;
-
-//CRUD (crear, leer, actualizar, borrar)
-//create 
-//Read
-//Update
-//Delete

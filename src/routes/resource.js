@@ -1,57 +1,53 @@
 const express = require("express");
-const contentSchema = require("../models/content");
+const resourceSchema = require("../models/resource");
 
 const router = express.Router();
 
-// create user
-router.post("/contents", (req, res) => {
-  const content = contentSchema(req.body);
-  content
+//Rutas de colección "recursos"
+
+// create resources
+router.post("/resources", (req, res) => {
+  const resource = resourceSchema(req.body);
+  resource
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get all users
-router.get("/contents", (req, res) => {
-  contentSchema
+router.get("/resources", (req, res) => {
+    resourceSchema
     .find()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get a user
-router.get("/contents/:id", (req, res) => {
+router.get("/resources/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  resourceSchema
     .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // delete a user
-router.delete("/contents/:id", (req, res) => {
+router.delete("/users/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  userSchema
     .remove({ _id: id })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // update a user
-router.put("/contents/:id", (req, res) => {
+router.put("/resources/:id", (req, res) => {
   const { id } = req.params;
-  const { concept, characteristic, examples } = req.body;
-  contentSchema
-    .updateOne({ _id: id }, { $set: { concept, characteristic, examples } })
+  const { format, url, resolution, copyright} = req.body;
+  resourceSchema
+    .updateOne({ _id: id }, { $set: { format, url, resolution, copyright } })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 module.exports = router;
-
-//CRUD (crear, leer, actualizar, borrar)
-//create 
-//Read
-//Update
-//Delete

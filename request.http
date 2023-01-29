@@ -29,11 +29,14 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/api/contents HTTP/1.1
+POST http://localhost:3000/api/resources HTTP/1.1
 Content-Type: application/json
 
 {
-  "concept": "prueba conceptoissidjskldjlksds",
-  "characteristic": "caracteristica 2dssdusiojidiosd",
-  "examples": "prueba ejemplo asklalsjksakllksadsa2"
+  "format": "prueba",
+  "url":"usdusiosdisdds",
+  "resolution:" : "idiodoisdds",
+  "copyright:" : "idiodoisdds"
+
+
 }

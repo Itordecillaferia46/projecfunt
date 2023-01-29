@@ -1,57 +1,51 @@
 const express = require("express");
-const contentSchema = require("../models/content");
+const crucigramaSchema = require("../models/crucigrama");
 
 const router = express.Router();
 
 // create user
-router.post("/contents", (req, res) => {
-  const content = contentSchema(req.body);
-  content
+router.post("/crucigramas", (req, res) => {
+  const crucigrama = crucigramaSchema(req.body);
+  crucigrama
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get all users
-router.get("/contents", (req, res) => {
-  contentSchema
+router.get("/crucigramas", (req, res) => {
+    crucigramaSchema
     .find()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get a user
-router.get("/contents/:id", (req, res) => {
+router.get("/crucigramas/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  crucigramaSchema
     .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // delete a user
-router.delete("/contents/:id", (req, res) => {
+router.delete("/crucigramas/:id", (req, res) => {
   const { id } = req.params;
-  contentSchema
+  crucigramaSchema
     .remove({ _id: id })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // update a user
-router.put("/contents/:id", (req, res) => {
+router.put("/crucigramas/:id", (req, res) => {
   const { id } = req.params;
-  const { concept, characteristic, examples } = req.body;
-  contentSchema
-    .updateOne({ _id: id }, { $set: { concept, characteristic, examples } })
+  const { pistas, P_H, P_V } = req.body;
+  crucigramaSchema
+    .updateOne({ _id: id }, { $set: {  pistas, P_H, P_V } })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 module.exports = router;
-
-//CRUD (crear, leer, actualizar, borrar)
-//create 
-//Read
-//Update
-//Delete

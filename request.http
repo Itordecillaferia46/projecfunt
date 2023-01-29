@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/users HTTP/1.1
+GET http://localhost:3000/api/creditos HTTP/1.1
 
 ###
 GET http://localhost:3000/api/users/6137e2bb2e329eb206b0073e HTTP/1.1
@@ -29,14 +29,14 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/api/resources HTTP/1.1
+POST http://localhost:3000/api/crucigramas HTTP/1.1
 Content-Type: application/json
 
 {
-  "format": "prueba",
-  "url":"usdusiosdisdds",
-  "resolution:" : "idiodoisdds",
-  "copyright:" : "idiodoisdds"
+  "pistas": "prueba",
+  "P_H":"usdusiosdisdds",
+  "P_V:" : "idiodoisdds",
+  
 
 
 }

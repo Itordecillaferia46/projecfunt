@@ -1,5 +1,5 @@
 const express = require("express");
-const userSchema = require("../models/evaluacion");
+const evaluacionSchema = require("../models/evaluacion");
 
 // Rutas para colección "actividades"
 
